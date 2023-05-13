@@ -13,6 +13,7 @@ import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import * as cors from 'cors';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { SuccessMessageComponent } from './success-message/success-message.compo
     LoginComponent,
     RegisterComponent,
     ErrorMessageComponent,
-    SuccessMessageComponent
+    SuccessMessageComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
