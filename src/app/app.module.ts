@@ -14,6 +14,10 @@ import * as cors from 'cors';
 import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { ProductsTableComponent } from './admin-dashboard/products-table/products-table.component';
+import { PaginatorComponent } from './paginator/paginator.component';
+import { EditAddProductComponent } from './admin-dashboard/products-table/edit-add-product/edit-add-product.component';
+import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 
 
 @NgModule({
@@ -26,7 +30,10 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     RegisterComponent,
     ErrorMessageComponent,
     SuccessMessageComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    ProductsTableComponent,
+    PaginatorComponent,
+    EditAddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -34,10 +41,10 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [MdbModalService,],
   bootstrap: [AppComponent]
 })
-export class AppModule implements NestModule{ 
+export class AppModule implements NestModule{
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(cors()) // agregar la configuración de cors

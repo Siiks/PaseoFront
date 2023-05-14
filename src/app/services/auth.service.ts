@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthenticationRequest, AuthenticationResponse } from './models/user';
+import { AuthenticationRequest, AuthenticationResponse } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class AuthService {
 
   apiUrl: string = 'http://localhost:8080/api/v1/auth'
 
-  login(auth: AuthenticationRequest): Promise<AuthenticationResponse> {
+  async login(auth: AuthenticationRequest): Promise<AuthenticationResponse> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
