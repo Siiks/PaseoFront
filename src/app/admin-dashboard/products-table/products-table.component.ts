@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { EditAddProductComponent } from './edit-add-product/edit-add-product.component';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -31,8 +31,6 @@ export class ProductsTableComponent {
       this.productos = result.content;
       this.totalPages = result.totalPages;
       this.currentPage = result.pageable.pageNumber+1;
-      console.log(result);
-
     });
   }
 
@@ -49,8 +47,12 @@ export class ProductsTableComponent {
     return pageNumbers;
   }
 
-  openModal() {
-    const modalRef = this.modalService.open(EditAddProductComponent);
-    modalRef.componentInstance.product = this.productos[0];
+  openModal(product?: Product) {
+    const options: NgbModalOptions = {
+      size: 'lg',
+    };
+    const modalRef = this.modalService.open(EditAddProductComponent, options);
+    console.log(this.productos[0]);
+    modalRef.componentInstance.producto = product;
   }
 }

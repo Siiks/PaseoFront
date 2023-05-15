@@ -13,15 +13,12 @@ export class AuthService {
 
   async login(auth: AuthenticationRequest): Promise<AuthenticationResponse> {
     const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Access-Control-Allow-Origin', '*')
-      .set('Access-Control-Allow-Methods', 'POST')
-      .set('Access-Control-Allow-Headers', 'Content-Type');
+    .set('Content-Type', 'application/json')
 
     const body = auth;
-    
+
     return this.http.post<AuthenticationResponse>(`${this.apiUrl}/authenticate`, body, {headers}).toPromise();
   }
-  
-  
+
+
 }

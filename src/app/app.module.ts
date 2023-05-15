@@ -18,7 +18,7 @@ import { ProductsTableComponent } from './admin-dashboard/products-table/product
 import { PaginatorComponent } from './paginator/paginator.component';
 import { EditAddProductComponent } from './admin-dashboard/products-table/edit-add-product/edit-add-product.component';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { MdbModalService } from 'mdb-angular-ui-kit/modal';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [MdbModalService,],
   bootstrap: [AppComponent]

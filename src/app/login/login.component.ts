@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   errorMessage: string = '';
   successMessage: string = '';
 
-  constructor(private authService: AuthService, 
+  constructor(private authService: AuthService,
     private router: Router) {
       this.authRequest = {
         email: '',
@@ -29,10 +29,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.authRequest).then(
       data => {
         // El usuario se ha autenticado correctamente
-        const token = data.token;
+        const token: any = data;
         const decodedToken: DecodedToken  = jwtDecode(token);
         const roles = decodedToken.roles;
         // Guarda el token y los roles en el almacenamiento local
+        localStorage.removeItem('access_token');
         localStorage.setItem('access_token', token);
         localStorage.setItem('roles', JSON.stringify(roles));
         // Redirige al usuario a la página de inicio

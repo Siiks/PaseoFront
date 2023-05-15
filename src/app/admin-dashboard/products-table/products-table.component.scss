@@ -1,1 +1,4 @@
 .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+::ng-deep ngb-modal-backdrop {
+  z-index: 1050 !important;
+}
