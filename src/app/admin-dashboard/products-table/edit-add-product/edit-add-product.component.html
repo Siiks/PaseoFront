@@ -1,13 +1,12 @@
 <div class="modal-header">
   <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
-  <button
+  <a
     type="button"
-    class="btn-close"
     aria-label="Close"
-    (click)="activeModal.dismiss('Cross click')"
-  ></button>
+    (click)="activeModal.dismiss('Cross click')"><i class="fa-solid fa-x"></i></a>
 </div>
 <div class="modal-body">
+  <app-error-message [message]="errorMessage"></app-error-message>
   <form action="#" [formGroup]="myForm" class="signin-form">
     <div class="form-group mb-3">
         <label class="label" for="email">Nombre</label>
@@ -15,29 +14,64 @@
              placeholder="Nombre" required>
     </div>
     <div class="form-group mb-3">
-        <label class="label" for="password">Descripción</label>
+        <label class="label" for="description">Descripción</label>
         <textarea class="form-control" formControlName="description" [(ngModel)]="producto.description"></textarea>
     </div>
     <div class="form-group mb-3">
-      <label class="label" for="email">Cantidad</label>
+      <label class="label" for="inventoryQuantity">Cantidad</label>
       <input type="number" class="form-control" formControlName="inventoryQuantity" [(ngModel)]="producto.inventoryQuantity"
            placeholder="Cantidad" required>
   </div>
   <div class="form-group mb-3">
-    <label class="label" for="email">Precio</label>
+    <label class="label" for="price">Precio</label>
     <input type="number" class="form-control" formControlName="price" [(ngModel)]="producto.price"
          placeholder="Cantidad" required>
 </div>
-  <div class="form-group mb-3">
-    <label class="label" for="email">Categoria</label>
-    <input type="number" class="form-control" formControlName="idCategory" [(ngModel)]="producto.idCategory"
-       placeholder="Categoria" required>
+<div class="form-group mb-3">
+  <label class="label" for="categoria">Categoria</label>
+  <select [(ngModel)]="producto.category.id" [ngModelOptions]="{ standalone: true }" name="categoria" class="form-control">
+    <option [value]="producto.category.id">{{ producto?.category?.name }}</option>
+    <option [value]="category.id" *ngFor="let category of categories">{{ category.name }}</option>
+  </select>
 </div>
 </form>
+<div *ngIf="producto.id">
+  <div class="form-group mb-3" *ngIf="!productImages[0]">
+    <label class="label" for="price">Imagen 1</label>
+    <input type="file" class="form-control"
+         placeholder="Cantidad" (change)="onImageUpload($event)" accept="image/*">
+         <input type="button" (click)="imageUploadAction()" value="Upload Image" class="btn btn-primary">
+  </div>
+  <div class="form-group mb-3" *ngIf="!productImages[1]">
+    <label class="label" for="price">Imagen 2</label>
+    <input type="file" class="form-control"
+         placeholder="Cantidad" (change)="onImageUpload($event)" accept="image/*">
+         <input type="button" (click)="imageUploadAction()" value="Upload Image"  class="btn btn-primary">
+  </div>
+  <div class="form-group mb-3" *ngIf="!productImages[2]">
+    <label class="label" for="price">Imagen 3</label>
+    <input type="file" class="form-control"
+         placeholder="Cantidad" (change)="onImageUpload($event)" accept="image/*">
+         <input type="button" (click)="imageUploadAction()" value="Upload Image" class="btn btn-primary">
+  </div>
+  <div class="form-group mb-3" *ngIf="!productImages[3]">
+    <label class="label" for="price">Imagen 4</label>
+    <input type="file" class="form-control"
+         placeholder="Cantidad" (change)="onImageUpload($event)" accept="image/*">
+         <input type="button" (click)="imageUploadAction()" value="Upload Image" class="btn btn-primary">
+
+  </div>
+  <div class="form-group mb-3 row">
+      <label class="label col-12" for="imagenes">Imagenes</label><br>
+      <div *ngFor="let image of productImages" class="col-3">
+        <img class="w-100" [src]="'data:image/jpeg;base64,' + image.bytes"> <a id="delete" (click)="deleteImage(image.id)"><i class="fa-solid fa-delete-left fa-lg" style="color: red;"></i></a>
+      </div>
+</div>
+</div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="activeModal.close('Close click')">
-    Close
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close(false)">
+    Cerrar
   </button>
-  <button type="button" class="btn btn-primary" (click)="saveProduct()">Save changes</button>
+  <button type="button" class="btn btn-primary" (click)="saveProduct()">Guardar</button>
 </div>

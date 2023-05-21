@@ -1,0 +1,50 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <app-error-message [message]="errorMessage"></app-error-message>
+  <form action="#" [formGroup]="myForm" class="signin-form">
+    <div class="form-group mb-3">
+        <label class="label" for="email">Email</label>
+        <input type="email" formControlName="email" class="form-control" [(ngModel)]="user.email"
+             placeholder="Email" required>
+    </div>
+    <div class="form-group mb-3">
+        <label class="label" for="password">Nombre</label>
+        <input type="text" class="form-control" formControlName="firstName" [(ngModel)]="user.firstName"
+           placeholder="Nombre" required>
+    </div>
+    <div class="form-group mb-3">
+      <label class="label" for="email">Apellidos</label>
+      <input type="text" class="form-control" formControlName="lastName" [(ngModel)]="user.lastName"
+           placeholder="Apellidos" required>
+  </div>
+  <div class="form-group mb-3">
+    <label class="label" for="email">Telefono</label>
+    <input type="text" class="form-control" formControlName="telefono" [(ngModel)]="user.telefono"
+         placeholder="Telefono" required>
+</div>
+  <div class="form-group mb-3">
+    <label class="label" for="email">Rol</label>
+    <input type="text" class="form-control" disabled value="{{user.role}}"
+       placeholder="Rol" required>
+</div>
+<div class="form-group mb-3" *ngIf="title == 'Añadir usuario'">
+  <label class="label" for="email">Contraseña</label>
+  <input type="password" class="form-control" formControlName="password" [(ngModel)]="password"
+     placeholder="Contraseña" required>
+</div>
+</form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close(false)">
+    Close
+  </button>
+  <button type="button" class="btn btn-primary" (click)="saveUser()">Save changes</button>
+</div>

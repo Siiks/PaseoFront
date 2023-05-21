@@ -15,10 +15,20 @@ import { ErrorMessageComponent } from './error-message/error-message.component';
 import { SuccessMessageComponent } from './success-message/success-message.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { ProductsTableComponent } from './admin-dashboard/products-table/products-table.component';
-import { PaginatorComponent } from './paginator/paginator.component';
 import { EditAddProductComponent } from './admin-dashboard/products-table/edit-add-product/edit-add-product.component';
 import { MdbModalService } from 'mdb-angular-ui-kit/modal';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
+import { UsersTableComponent } from './admin-dashboard/users-table/users-table.component';
+import { EditAddUserComponent } from './admin-dashboard/users-table/edit-add-user/edit-add-user.component';
+import { CategoryTableComponent } from './admin-dashboard/category-table/category-table.component';
+import { EditAddCategoryComponent } from './admin-dashboard/category-table/edit-add-category/edit-add-category.component';
+import { TiendaComponent } from './tienda/tienda.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CartComponent } from './cart/cart.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -32,17 +42,26 @@ import { ReactiveFormsModule } from '@angular/forms';
     SuccessMessageComponent,
     AdminDashboardComponent,
     ProductsTableComponent,
-    PaginatorComponent,
-    EditAddProductComponent
+    EditAddProductComponent,
+    ConfirmationModalComponent,
+    UsersTableComponent,
+    EditAddUserComponent,
+    CategoryTableComponent,
+    EditAddCategoryComponent,
+    TiendaComponent,
+    CartComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CarouselModule,
+    BrowserAnimationsModule
   ],
-  providers: [MdbModalService,],
+  providers: [MdbModalService, ],
   bootstrap: [AppComponent]
 })
 export class AppModule implements NestModule{

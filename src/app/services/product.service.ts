@@ -11,17 +11,20 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  async getProductos(page: number, size: number = 10): Promise<Array<Product>> {
-    return this.http.get<Array<Product>>(`${this.apiUrl}?page=${page}&size=${size}`).toPromise();
+  async getProductos(page: number, size: number = 10, idCategoria?: number, nombre?: string): Promise<Array<Product>> {
+    let url = `${this.apiUrl}?page=${page}&size=${size}`;
+    if (idCategoria) {
+      url += `&idCategoria=${idCategoria}`;
+    }
+    if (nombre) {
+      url += `&nombre=${nombre}`;
+    }
+    return this.http.get<Array<Product>>(url).toPromise();
   }
 
   async addProduct(product: ProductDto): Promise<number> {
     let accessToken: string = localStorage.getItem("access_token")
     const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Access-Control-Allow-Origin', '*')
-      .set('Access-Control-Allow-Methods', 'POST')
-      .set('Access-Control-Allow-Headers', 'Content-Type')
       .set('Authorization', 'Bearer ' + accessToken);
 
     return this.http.post<any>(`${this.apiUrl}/add`, product, { headers }).toPromise();
@@ -34,5 +37,13 @@ export class ProductService {
       .set('Authorization', 'Bearer ' + accessToken);
 
     return this.http.put<any>(`${this.apiUrl}/update`, product, { headers }).toPromise();
+  }
+
+  async deleteProduct(product: ProductDto): Promise<any> {
+    let accessToken: string = localStorage.getItem("access_token")
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + accessToken);
+
+    return this.http.delete(`${this.apiUrl}/${product.id}`, { headers }).toPromise();
   }
 }

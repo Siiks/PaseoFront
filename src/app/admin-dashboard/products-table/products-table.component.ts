@@ -3,6 +3,7 @@ import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { EditAddProductComponent } from './edit-add-product/edit-add-product.component';
 import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationModalComponent } from 'src/app/confirmation-modal/confirmation-modal.component';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class ProductsTableComponent {
   totalPages: number = 0;
   size: number = 5;
   currentPage: number = 0;
+  errorMessage: string = '';
+  successMessage: string = '';
 
   constructor(private productService: ProductService,
     private modalService: NgbModal){}
@@ -31,6 +34,8 @@ export class ProductsTableComponent {
       this.productos = result.content;
       this.totalPages = result.totalPages;
       this.currentPage = result.pageable.pageNumber+1;
+      console.log(this.productos[0].fotos[0].image);
+
     });
   }
 
@@ -48,11 +53,28 @@ export class ProductsTableComponent {
   }
 
   openModal(product?: Product) {
-    const options: NgbModalOptions = {
-      size: 'lg',
-    };
-    const modalRef = this.modalService.open(EditAddProductComponent, options);
-    console.log(this.productos[0]);
+    const modalRef = this.modalService.open(EditAddProductComponent, {size: 'lg'});
     modalRef.componentInstance.producto = product;
+    modalRef.result.then((result) => {
+      if(!result) {
+        this.getProductos();
+      }
+    })
+  }
+
+  openDeleteModal(product: any) {
+    let modalRef = this.modalService.open(ConfirmationModalComponent);
+    modalRef.result.then(result => {
+      if(result) {
+        this.productService.deleteProduct(product).then(async () => {
+          this.successMessage = "Se ha borrado el producto con exito";
+          await this.getProductos();
+        })
+        .catch(error => {
+          this.errorMessage = error.message;
+        })
+        }
+      })
+      modalRef = null;
   }
 }

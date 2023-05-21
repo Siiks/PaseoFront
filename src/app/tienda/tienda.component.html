@@ -1,0 +1,94 @@
+<!-- Sección de Breadcrumb (Migas de pan) -->
+<section class="breadcrumb-option">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="breadcrumb__text">
+                  <h4>Tienda</h4>
+                  <div class="breadcrumb__links">
+                      <a href="./index.html">Inicio</a>
+                      <span>Tienda</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- Fin de la sección de Breadcrumb -->
+<!-- Sección de Tienda -->
+<section class="shop spad">
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-3">
+              <div class="shop__sidebar">
+                  <div class="shop__sidebar__search">
+                      <form action="#">
+                          <input type="text" placeholder="Buscar..." [(ngModel)]="buscar" name="buscar">
+                          <button type="submit"><span class="icon_search" (click)="getProductos()"></span></button>
+                      </form>
+                  </div>
+                  <div class="shop__sidebar__accordion">
+                      <div class="accordion" id="accordionExample">
+                          <div class="card">
+                              <div class="card-heading">
+                                  <a data-toggle="collapse" data-target="#collapseOne">Categorías</a>
+                              </div>
+                              <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                  <div class="card-body">
+                                      <div class="shop__sidebar__categories">
+                                          <ul class="nice-scroll">
+                                              <li *ngFor="let categoria of categorias"><a (click)="getProductos(categoria.id)">{{categoria.name}}</a></li>
+                                          </ul>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-9">
+              <div class="shop__product__option">
+                  <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                          <div class="shop__product__option__left">
+                              <p>Mostrando {{currentPage}}-{{totalPages}} de {{numberOfElements}} resultados</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let producto of productos">
+                      <div class="product__item">
+                          <div class="product__item__pic set-bg" [style.background-image]="'url(data:image/jpeg;base64,' + producto?.fotos[0]?.image + ')'">
+                          </div>
+                          <div class="product__item__text">
+                              <h6>{{producto.name}}</h6>
+                              <a href="#" class="add-cart">+ Agregar al carrito</a>
+                              <h5>${{producto.price.toFixed(2)}}</h5>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                    <div class="product__pagination">
+                      <a (click)="changePage($event.target)" *ngFor="let pageNumber of getPageNumbers()" [class.active]="currentPage == pageNumber">{{pageNumber}}</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- Fin de la sección de Tienda -->
+<!-- Inicio de la sección de Búsqueda -->
+<div class="search-model">
+  <div class="h-100 d-flex align-items-center justify-content-center">
+      <div class="search-close-switch">+</div>
+      <form class="search-model-form">
+          <input type="text" id="search-input" placeholder="Buscar aquí.....">
+      </form>
+  </div>
+</div>
+<!-- Fin de la sección de Búsqueda -->

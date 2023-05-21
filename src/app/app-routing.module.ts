@@ -5,13 +5,15 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { TiendaComponent } from './tienda/tienda.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: RegisterComponent },
-  { path: 'add-product', component: RegisterComponent },
-  { path: 'edit-product', component: RegisterComponent },
+  { path: 'shop', component: TiendaComponent },
+  { path: 'cart', component: CartComponent },
   { path: 'dashboard', component: AdminDashboardComponent }
 ];
 

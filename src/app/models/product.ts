@@ -7,6 +7,7 @@ export class Product {
   description: string;
   price: number;
   inventoryQuantity: number;
+  fotos: any[];
 }
 
 export class ProductDto {

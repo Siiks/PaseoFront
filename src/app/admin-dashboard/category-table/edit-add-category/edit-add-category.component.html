@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <app-error-message [message]="errorMessage"></app-error-message>
+  <form action="#" [formGroup]="myForm" class="signin-form">
+    <div class="form-group mb-3">
+        <label class="label" for="name">Nombre</label>
+        <input type="text" formControlName="name" class="form-control" [(ngModel)]="category.name"
+             placeholder="Nombre" required>
+    </div>
+</form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close(false)">
+    Cerrar
+  </button>
+  <button type="button" class="btn btn-primary" (click)="saveCategory()">Guardar</button>
+</div>

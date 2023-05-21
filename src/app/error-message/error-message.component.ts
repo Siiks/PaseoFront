@@ -8,10 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ErrorMessageComponent implements OnInit{
   @Input() message: string;
   showMessage: boolean = true;
-  
+
   ngOnInit(): void {
     setTimeout(() => {
-      this.showMessage = false;
+      this.message = undefined;
     }, 10000);
   }
 }

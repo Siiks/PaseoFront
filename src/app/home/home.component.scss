@@ -1,3 +1,29 @@
+.add-cart {
+  color: #dc3545 !important;
+}
 a:hover{
-    text-decoration: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+.hero__text {
+
+  h6 {
+      top: 0;
+      opacity: 1;
+  }
+
+  h2 {
+      top: 0;
+      opacity: 1;
+  }
+
+  p {
+      top: 0;
+      opacity: 1;
+  }
+
+  .primary-btn {
+      top: 0;
+      opacity: 1;
+  }
 }

@@ -1,17 +1,21 @@
 export interface User {
     id: number;
     email: string;
-    password: string;
-    firstname: string;
-    lastname: string;
+    firstName: string;
+    lastName: string;
     telefono: string;
+    role: Role;
 }
-
+export enum Role {
+  "ADMIN" = "ADMIN",
+  "USER" = "USER",
+}
 export interface RegisterRequest {
     firstname: string;
     lastname: string;
     email: string;
     password: string;
+    telefono?: string;
 }
 
 export interface AuthenticationResponse {
@@ -30,7 +34,7 @@ export interface PasswordForgot {
 export interface PasswordForgotValidate {
     token: string;
     newPassword: string;
-    newPasswordConfirm: string; 
+    newPasswordConfirm: string;
 }
 
 export  interface PasswordForgotConfirm {
@@ -39,5 +43,5 @@ export  interface PasswordForgotConfirm {
 
 export interface DecodedToken {
     roles: string[];
-    // Add other properties here if needed
+    sub: string;
   }

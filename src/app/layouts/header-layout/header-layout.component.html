@@ -1,55 +1,54 @@
 <header class="header">
-    <div class="header__top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-7">
-                    <div class="header__top__left">
-                        <p>Free shipping, 30-day return or refund guarantee.</p>
+  <div class="header__top">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-6 col-md-7">
+                  <div class="header__top__left">
+                      <p>Envío gratis en tu primer pedido.</p>
+                  </div>
+              </div>
+              <div class="col-lg-6 col-md-5">
+                  <div class="header__top__right">
+                      <div class="header__top__links">
+                          <a href="/login" *ngIf="!estaLogueado()">Iniciar sesión</a>
+                          <a href="/dashboard" *ngIf="esAdministrador()">Panel de administración</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-3 col-md-3">
+              <div class="header__logo">
+                  <a href="./index.html"><img src="../../../assets/img/Logo.png" alt=""></a>
+              </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+              <nav class="header__menu mobile-menu">
+                  <ul>
+                      <li><a href="./index.html">Inicio</a></li>
+                      <li><a href="shop">Tienda</a></li>
+                      <li><a href="./contact.html">Contacto</a></li>
+                  </ul>
+              </nav>
+          </div>
+          <div class="col-lg-3 col-md-3">
+              <div class="header__nav__option row" *ngIf="estaLogueado()">
+                  <a href="cart"><img src="../../../assets/img/cart.png" alt=""> <span>{{productoEnCarrito}}</span></a>
+                  <div class="price mr-3">${{precioProductoEnCarrito}}</div>
+                  <div class="dropdown" id="user" >
+                    <a class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fa fa-user fa-lg"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" (click)="logout()">Cerrar sesión</a>
+                      <a class="dropdown-item" href="#">Mi perfil</a>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-5">
-                    <div class="header__top__right">
-                        <div class="header__top__links">
-                            <a href="/login">Sign in</a>
-                            <a href="/dashboard" *ngIf="esAdministrador()">Admin Dashboard</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-3">
-                <div class="header__logo">
-                    <a href="./index.html"><img src="../../../assets/img/Logo.png" alt=""></a>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <nav class="header__menu mobile-menu">
-                    <ul>
-                        <li class="active"><a href="./index.html">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
-                        <li><a href="#">Pages</a>
-                            <ul class="dropdown">
-                                <li><a href="./about.html">About Us</a></li>
-                                <li><a href="./shop-details.html">Shop Details</a></li>
-                                <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./contact.html">Contacts</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="col-lg-3 col-md-3">
-                <div class="header__nav__option">
-                    <a href="#" class="search-switch"><img src="../../../assets/img/search.png" alt=""></a>
-                    <a href="#"><img src="../../../assets/img/heart.png" alt=""></a>
-                    <a href="#"><img src="../../../assets/img/cart.png" alt=""> <span>0</span></a>
-                    <div class="price">$0.00</div>
-                </div>
-            </div>
-        </div>
-    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </header>
