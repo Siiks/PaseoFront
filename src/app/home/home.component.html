@@ -11,7 +11,7 @@
               <h6>Colección de Verano</h6>
               <h2>Colecciones Otoño-Invierno 2023</h2>
               <p>Una marca especializada en la creación de prendas de lujo esenciales. Elaboradas éticamente con un compromiso inquebrantable con una calidad excepcional.</p>
-              <a href="#" class="primary-btn">Comprar ahora <span class="arrow_right"></span></a>
+              <a href="shop" class="primary-btn">Comprar ahora <span class="arrow_right"></span></a>
               <div class="hero__social">
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -33,7 +33,7 @@
               <h6>Colección de Verano</h6>
               <h2>Colecciones Otoño-Invierno 2023</h2>
               <p>Una marca especializada en la creación de prendas de lujo esenciales. Elaboradas éticamente con un compromiso inquebrantable con una calidad excepcional.</p>
-              <a href="#" class="primary-btn">Comprar ahora <span class="arrow_right"></span></a>
+              <a href="shop" class="primary-btn">Comprar ahora <span class="arrow_right"></span></a>
               <div class="hero__social">
                 <a href="#"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="banner__item__text">
                         <h2>Colecciones de Ropa 2023</h2>
-                        <a href="tienda">Comprar ahora</a>
+                        <a href="shop">Comprar ahora</a>
                     </div>
                 </div>
             </div>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="banner__item__text">
                         <h2>Accesorios</h2>
-                        <a href="tienda">Comprar ahora</a>
+                        <a href="shop">Comprar ahora</a>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="banner__item__text">
                         <h2>Zapatos Primavera 2023</h2>
-                        <a href="tienda">Comprar ahora</a>
+                        <a href="shop">Comprar ahora</a>
                     </div>
                 </div>
             </div>
@@ -101,10 +101,10 @@
             </div>
         </div>
         <div class="row product__filter">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals"
+            <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals prod"
                 *ngFor="let product of productos">
                 <div class="product__item">
-                  <div class="product__item__pic" [style.background-image]="'url(data:image/jpeg;base64,' + product?.fotos[0]?.image + ')'" >
+                  <div class="product__item__pic" (click)="getProduct(product.id)" [style.background-image]="'url(data:image/jpeg;base64,' + product?.fotos[0]?.image + ')'" >
                     </div>
                     <div class="product__item__text">
                         <h6>{{product.name}}</h6>

@@ -9,6 +9,8 @@ export class SuccessMessageComponent implements OnInit {
   @Input() message: string;
 
   ngOnInit(): void {
+    console.log(this.message);
+
     setTimeout(() => {
       this.message = undefined;
     }, 10000);

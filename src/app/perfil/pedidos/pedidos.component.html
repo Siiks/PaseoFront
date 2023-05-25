@@ -1,0 +1,98 @@
+
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
+<div class="container">
+  <div class="row flex-lg-nowrap">
+    <div class="col-12 col-lg-auto mb-3" style="width: 300px">
+      <div class="card p-3">
+        <div class="e-navlist e-navlist--active-bg">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link px-2" href="perfil"
+                ><i class="fa fa-fw fa-bar-chart mr-1"></i
+                ><span>Perfil</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-2" href="direcciones"
+                ><i class="fa fa-fw fa-th mr-1"></i
+                ><span>Direcciones de entrega</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link px-2" href="pedidos"
+                ><i class="fa fa-truck-fast mr-1"></i><span>Pedidos</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="e-profile">
+                <div class="row">
+                  <div
+                    class="col d-flex flex-column flex-sm-row justify-content-between mb-3"
+                  >
+                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                      <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user?.firstName}} {{user?.lastName}}</h4>
+                    </div>
+                  </div>
+                </div>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a href="" class="active nav-link">Pedidos</a>
+                  </li>
+                </ul>
+                <div class="tab-content pt-3">
+                  <div class="tab-pane active">
+                    <form class="form" novalidate="">
+                      <section class="timeline_area section_padding_130" *ngFor="let item of productos; index as i">
+                        <div class="container pointer">
+                          <div class="row">
+                            <div class="col-12">
+                              <!-- Timeline Area-->
+                              <div class="apland-timeline-area">
+                                <!-- Single Timeline Content-->
+                                <div class="single-timeline-area">
+                                  <div class="row">
+                                    <div class="col-12 col-md-6 col-lg-12">
+                                        <div class="single-timeline-content d-flex wow align-items-center fadeInLeft" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                                            <div class="timeline-icon">
+                                              <i class="fa fa-truck-fast mr-1"></i>
+                                            </div>
+                                            <div class="timeline-text">
+                                                <h6>Pedido {{i + 1}}</h6>
+                                                <p>Fecha: {{item.order.orderDate}}</p>
+                                            </div>
+                                            <div class="ml-5 timeline-text">
+                                              <h6>Productos: </h6>
+                                              <p *ngFor="let producto of item.product">{{producto.name}}</p>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br /><br /><br />

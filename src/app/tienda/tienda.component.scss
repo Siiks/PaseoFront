@@ -1,3 +1,35 @@
 a {
   cursor: pointer;
 }
+.add-cart {
+  color: #dc3545 !important;
+}
+a:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
+.hero__text {
+
+  h6 {
+      top: 0;
+      opacity: 1;
+  }
+
+  h2 {
+      top: 0;
+      opacity: 1;
+  }
+
+  p {
+      top: 0;
+      opacity: 1;
+  }
+
+  .primary-btn {
+      top: 0;
+      opacity: 1;
+  }
+}
+.prod {
+  cursor: pointer;
+}

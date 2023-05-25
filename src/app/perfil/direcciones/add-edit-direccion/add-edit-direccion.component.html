@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  ></button>
+</div>
+<div class="modal-body">
+  <app-error-message [message]="errorMessage"></app-error-message>
+  <form action="#" [formGroup]="myForm" class="signin-form">
+    <div class="form-group mb-3">
+        <label class="label" for="direccion">Dirección</label>
+        <input type="text" formControlName="addressLine1" class="form-control"
+             placeholder="Calle/Avenida/Parque" [(ngModel)]="address.addressLine1" required>
+    </div>
+    <div class="form-group mb-3">
+        <label class="label" for="ciudad">Ciudad</label>
+        <input type="text" class="form-control" [(ngModel)]="address.city" formControlName="city"
+           placeholder="Logroño" required>
+    </div>
+    <div class="form-group mb-3">
+      <label class="label" for="email">Pais</label>
+      <input type="text" class="form-control" [(ngModel)]="address.country" formControlName="country"
+           placeholder="España" required>
+  </div>
+  <div class="form-group mb-3">
+    <label class="label" for="email">Código postal</label>
+    <input type="text" class="form-control" [(ngModel)]="address.postalCode" formControlName="postalCode"
+         placeholder="23002" required>
+  </div>
+</form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="activeModal.close()">
+    Cerrar
+  </button>
+  <button type="button" class="btn btn-primary" (click)="addAddress()">Guardar</button>
+</div>

@@ -27,6 +27,16 @@ import { TiendaComponent } from './tienda/tienda.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CartComponent } from './cart/cart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { DireccionesComponent } from './perfil/direcciones/direcciones.component';
+import { AddEditDireccionComponent } from './perfil/direcciones/add-edit-direccion/add-edit-direccion.component';
+import { PaymentComponent } from './payment/payment.component';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { NgxStripeModule, StripeService } from 'ngx-stripe';
+import { ContactoComponent } from './contacto/contacto.component';
+import { PedidosComponent } from './perfil/pedidos/pedidos.component';
+
 
 
 
@@ -50,6 +60,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EditAddCategoryComponent,
     TiendaComponent,
     CartComponent,
+    ProductDetailComponent,
+    PerfilComponent,
+    DireccionesComponent,
+    AddEditDireccionComponent,
+    PaymentComponent,
+    CheckOutComponent,
+    ContactoComponent,
+    PedidosComponent,
+
 
   ],
   imports: [
@@ -59,9 +78,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     ReactiveFormsModule,
     CarouselModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxStripeModule.forRoot("pk_test_51NBKmBENB0HVFsJp1dXcwdMqlzBdU5atZzvNH2eSb2LNl6ngkQp0eyN79jQUTSFSdBKmYKHHpc1MJ9ab6Rbz1p2m00AuCHL6G3"),
   ],
-  providers: [MdbModalService, ],
+  providers: [MdbModalService, StripeService],
   bootstrap: [AppComponent]
 })
 export class AppModule implements NestModule{

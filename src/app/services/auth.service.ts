@@ -28,4 +28,22 @@ export class AuthService {
 
     return this.http.post<AuthenticationResponse>(`${this.apiUrl}/register`, body, { headers }).toPromise();
   }
+
+  async logout(){
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('roles')
+    localStorage.removeItem('email')
+  }
+
+  async  isAuthenticated(): Promise<boolean> {
+    let accessToken: string = localStorage.getItem("access_token")
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + accessToken);
+
+    return this.http.get<boolean>(`${this.apiUrl}/me`, { headers }).toPromise();
+  }
+
+  async isAdmin(): Promise<boolean> {
+    return localStorage.getItem('roles').includes("ADMIN");
+  }
 }

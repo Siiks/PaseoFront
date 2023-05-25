@@ -1,0 +1,83 @@
+<section class="breadcrumb-option">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="breadcrumb__text">
+          <h4>Finalizar compra</h4>
+          <div class="breadcrumb__links">
+            <a href="./index.html">Inicio</a>
+            <a href="./shop.html">Tienda</a>
+            <span>Finalizar compra</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-error-message [message]="errorMessage"></app-error-message>
+<app-success-message [message]="successMessage"></app-success-message>
+
+<section class="checkout spad">
+  <div class="container">
+    <div class="checkout__form">
+      <form action="#">
+        <div class="row">
+          <div class="col-lg-8 col-md-6">
+            <h6 class="checkout__title">Detalles de facturación</h6>
+            <section class="timeline_area section_padding_130" *ngFor="let address of addresses; index as i">
+              <div class="container pointer" (click)="check(i)">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="apland-timeline-area">
+                      <div class="single-timeline-area">
+                        <div class="row">
+                          <div class="col-12 col-md-6 col-lg-12">
+                            <div class="single-timeline-content d-flex wow align-items-center fadeInLeft" data-wow-delay="0.3s">
+                              <div class="timeline-icon">
+                                <i class="fa fa-address-card" aria-hidden="true"></i>
+                              </div>
+                              <div class="timeline-text">
+                                <h6>Dirección {{i+1}}</h6>
+                                <p>{{address.addressLine1}} {{address.city}} {{address.country}} {{address.postalCode}}</p>
+                              </div>
+                              <div class="cart__close" style="margin-left: auto;">
+                                <input type="checkbox" name="checkbox" id="" [checked]="checkboxes[i]">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+              <input type="text" class="form-control" formControlName="name" placeholder="Tu nombre">
+              <br>
+              <ngx-stripe-card
+                [options]="cardOptions"
+                [elementsOptions]="elementsOptions">
+              </ngx-stripe-card>
+            </form>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="checkout__order">
+              <h4 class="order__title">Tu pedido</h4>
+              <div class="checkout__order__products">Producto <span>Total</span></div>
+              <ul class="checkout__total__products" *ngFor="let item of cart">
+                <li>{{item.product.name}} x {{item.quantity}} <span>$ {{(item.product.price * item.quantity).toFixed(2)}}</span></li>
+              </ul>
+              <ul class="checkout__total__all">
+                <li>Subtotal <span>${{total.toFixed(2)}}</span></li>
+                <li>Total <span>${{total.toFixed(2)}}</span></li>
+              </ul>
+              <button type="submit" class="site-btn" (click)="createOrder()">REALIZAR PEDIDO</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

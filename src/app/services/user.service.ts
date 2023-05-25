@@ -19,8 +19,8 @@ export class UserService {
     return this.http.get<Array<User>>(`${this.apiUrl}?page=${page}&size=${size}`, { headers }).toPromise();
   }
 
-  async addUser(user: RegisterRequest): Promise<User> {
-    return this.http.post<User>(`http://localhost:8080/api/v1/auth/register`, user).toPromise();
+  async addUser(user: User): Promise<User> {
+    return this.http.post<User>(`${this.apiUrl}/add`, user).toPromise();
 
   }
 

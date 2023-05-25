@@ -43,4 +43,12 @@ export class CartService {
 
     return this.http.put(`${this.apiUrl}/edit`, cartItem, { headers }).toPromise()
   }
+
+  async deleteCartItems(userId: number): Promise<any> {
+    let accessToken: string = localStorage.getItem("access_token")
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer ' + accessToken);
+
+    return this.http.delete(`${this.apiUrl}/user/${userId}`, { headers }).toPromise()
+  }
 }

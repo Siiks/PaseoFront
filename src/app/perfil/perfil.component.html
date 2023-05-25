@@ -1,0 +1,106 @@
+<app-error-message [message]="errorMessage"></app-error-message>
+<app-success-message [message]="successMessage"></app-success-message>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+  <div class="row flex-lg-nowrap">
+    <div class="col-12 col-lg-auto mb-3" style="width: 300px;">
+      <div class="card p-3">
+        <div class="e-navlist e-navlist--active-bg">
+          <ul class="nav">
+            <li class="nav-item"><a class="nav-link px-2" href="perfil"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Perfil</span></a></li>
+            <li class="nav-item"><a class="nav-link px-2" href="direcciones"><i class="fa fa-fw fa-th mr-1"></i><span>Direcciones de entrega</span></a></li>
+            <li class="nav-item"><a class="nav-link px-2" href="pedidos"><i class="fa fa-truck-fast mr-1"></i><span>Pedidos</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <div class="col mb-3">
+          <div class="card">
+            <div class="card-body">
+              <div class="e-profile">
+                <div class="row">
+                  <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                      <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{user?.firstName}} {{user?.lastName}}</h4>
+                    </div>
+                  </div>
+                </div>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item"><a href="" class="active nav-link">Configuración</a></li>
+                </ul>
+                <div class="tab-content pt-3">
+                  <div class="tab-pane active">
+                    <form class="form" novalidate="">
+                      <div class="row">
+                        <div class="col">
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Nombre</label>
+                                <input class="form-control" type="text" name="name" [(ngModel)]="user.firstName">
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Apellido</label>
+                                <input class="form-control" type="text" name="username" [(ngModel)]="user.lastName">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <label>Email</label>
+                                <input class="form-control" type="email" name="email" placeholder="user@example.com" [(ngModel)]="user.email">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col mb-3">
+                              <div class="form-group">
+                                <label>Teléfono</label>
+                                <input class="form-control" type="text" name="telefono" placeholder="Teléfono" [(ngModel)]="user.telefono">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col d-flex justify-content-end">
+                          <button class="btn btn-primary" type="submit" (click)="saveUser()">Guardar cambios</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-3 mb-3">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="px-xl-3">
+                <button class="btn btn-block btn-secondary" (click)="logout()">
+                  <span>Cerrar sesión</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="px-xl-3">
+                <button class="btn btn-block btn-primary" (click)="openDeleteModal()">
+                  <span>Eliminar cuenta</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br><br>

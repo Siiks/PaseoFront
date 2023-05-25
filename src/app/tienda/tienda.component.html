@@ -58,13 +58,13 @@
                   </div>
               </div>
               <div class="row">
-                  <div class="col-lg-4 col-md-6 col-sm-6" *ngFor="let producto of productos">
+                  <div class="col-lg-4 col-md-6 col-sm-6 prod" *ngFor="let producto of productos" >
                       <div class="product__item">
-                          <div class="product__item__pic set-bg" [style.background-image]="'url(data:image/jpeg;base64,' + producto?.fotos[0]?.image + ')'">
+                          <div class="product__item__pic set-bg" (click)="getProduct(producto.id)" [style.background-image]="'url(data:image/jpeg;base64,' + producto?.fotos[0]?.image + ')'">
                           </div>
                           <div class="product__item__text">
                               <h6>{{producto.name}}</h6>
-                              <a href="#" class="add-cart">+ Agregar al carrito</a>
+                              <a (click)="addCartItem(producto)" class="add-cart">+ Agregar al carrito</a>
                               <h5>${{producto.price.toFixed(2)}}</h5>
                           </div>
                       </div>

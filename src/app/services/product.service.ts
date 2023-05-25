@@ -46,4 +46,12 @@ export class ProductService {
 
     return this.http.delete(`${this.apiUrl}/${product.id}`, { headers }).toPromise();
   }
+
+  async getProductoById(id: number): Promise<Product> {
+    let accessToken: string = localStorage.getItem("access_token")
+    const headers = new HttpHeaders()
+      .set('Authorization', 'Bearer' + accessToken);
+
+    return this.http.get<Product>(this.apiUrl+'/id/' + id, { headers }).toPromise();
+  }
 }

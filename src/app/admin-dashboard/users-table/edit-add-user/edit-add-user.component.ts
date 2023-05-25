@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/user.service';
 export class EditAddUserComponent {
   @Input() user: User;
   registerRequest: RegisterRequest;
-  password: string;
+  password: string = '';
   title: string = '';
   userId: number = 0;
   myForm: FormGroup;
@@ -22,20 +22,24 @@ export class EditAddUserComponent {
   constructor(public activeModal: NgbActiveModal,private formBuilder: FormBuilder, private readonly userService: UserService, private readonly router: Router) {
     this.myForm = this.formBuilder.group({
       // Define your form controls here
-      email: ['', Validators.email],
+      email: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       telefono: [0, Validators.required]
-
-      // Add more form controls as needed
     });
+
    }
 
   ngOnInit() {
     if(this.user){
       this.title = "Editar usuario"
-      console.log(this.user);
-
+      this.myForm = this.formBuilder.group({
+        // Define your form controls here
+        email: ['', Validators.required],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        telefono: [0, Validators.required]
+      });
     } else {
       this.title = "Añadir usuario"
       this.user = {
@@ -43,39 +47,44 @@ export class EditAddUserComponent {
         id: 0,
         firstName: '',
         lastName: '',
-        role: Role.USER,
+        role: Role.ADMIN,
         telefono: '',
+        password: ''
       }
+      this.myForm = this.formBuilder.group({
+        // Define your form controls here
+        email: ['', Validators.required],
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
+        telefono: [0, Validators.required],
+        password: ['', Validators.required]
+      });
     }
   }
 
   async saveUser() {
+    this.errorMessage = '';
     if (this.myForm.invalid) {
       this.errorMessage = 'Por favor complete todos los campos';
       return;
     }
-    
+
     if (this.title == "Añadir usuario") {
-      this.registerRequest = {
-        email: this.user.email,
-        firstname: this.user.firstName.toString(),
-        lastname: this.user.lastName,
-        password: this.password
-      }
-      this.userService.addUser(this.registerRequest).then(result => {
+      this.user.password = this.password;
+      this.userService.addUser(this.user).then(result => {
         this.userId = result.id;
         this.router.navigate[('dashboard')]
         this.activeModal.close();
+      })
+      .catch(() => {
+        this.errorMessage = 'El email ya esta en uso';
       });
     } else {
-      console.log(this.user);
-
       this.userService.editUser(this.user)
       .then((result) => {
         this.userId = result.id;
       })
       .catch(err => {
-        console.log(err.message);
       })
       .finally(() => {
         this.router.navigate[('dashboard')]

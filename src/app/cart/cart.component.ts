@@ -14,6 +14,8 @@ export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   userId: number;
   subtotal: number = 0;
+  errorMessage: string = '';
+  successMessage: string = '';
   constructor(private cartItemsService: CartService,
     private userService: UserService,
     private router: Router) { }
@@ -30,26 +32,35 @@ export class CartComponent implements OnInit {
       this.router.navigate(['login']);
     }
     await this.userService.getUserByEmail(email)
-    .then(res => {
-      this.userId = res.id;
-    });
+      .then(res => {
+        this.userId = res.id;
+      })
+      .catch(() => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('email');
+        localStorage.removeItem('roles');
+      });
     this.cartItems = await this.cartItemsService.getCartItems(this.userId);
     this.cartItems.forEach(item => {
-    this.subtotal += item.quantity * item.product.price
+      this.subtotal += item.quantity * item.product.price
     })
   }
 
-  async deleteCartItems(idCartItem: number){
+  async deleteCartItems(idCartItem: number) {
+    this.successMessage = undefined;
     this.cartItemsService.deleteCartItem(idCartItem).then(async () => {
+      this.successMessage = "El producto se ha borrado con éxito"
       await this.getCartItems();
     });
   }
 
   async updateCartItems(cartItem: CartItem[]) {
+    this.successMessage = undefined;
     this.cartItemsService.editCartItem(cartItem)
-    .then(() => {
-      this.getCartItems();
-    })
+      .then(() => {
+        this.successMessage = "El carrito se ha actualizado con éxito"
+        this.getCartItems();
+      })
   }
   incrementQuantity(item: CartItem) {
     item.quantity += 1;

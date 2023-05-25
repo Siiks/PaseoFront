@@ -34,7 +34,6 @@ export class ProductsTableComponent {
       this.productos = result.content;
       this.totalPages = result.totalPages;
       this.currentPage = result.pageable.pageNumber+1;
-      console.log(this.productos[0].fotos[0].image);
 
     });
   }

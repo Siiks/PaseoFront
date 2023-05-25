@@ -86,4 +86,7 @@ export class HomeComponent implements OnInit {
     this.sharedService.triggerUpdate();
   }
 
+  async getProduct(id: number) {
+    this.router.navigate(['product/' + id]);
+  }
 }
