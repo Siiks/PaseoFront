@@ -51,7 +51,8 @@ export class CheckOutComponent implements OnInit {
     private orderService: OrderService,
     private userService: UserService,
     private stripeService: StripeService,
-    private fb: FormBuilder,) { }
+    private fb: FormBuilder,) {
+     }
 
   cardOptions: StripeCardElementOptions = {
     style: {
@@ -132,9 +133,6 @@ export class CheckOutComponent implements OnInit {
       return;
     }
 
-    if (this.errorMessage) {
-      return;
-    }
     this.order = {
       id: 0,
       user: this.user,
@@ -147,11 +145,13 @@ export class CheckOutComponent implements OnInit {
         this.cartService.deleteCartItems(this.user.id);
         this.successMessage = "Su pedido ha sido realizado"
         this.order = order;
+        console.log(this.order);
+
       })
       .catch(() => {
         this.errorMessage = "Ha ocurrido un error";
       });
-    await this.createToken()
+    await this.createToken(this.order)
   }
 
 
@@ -159,10 +159,12 @@ export class CheckOutComponent implements OnInit {
     this.pago = resultado;
   }
 
-  confirmar(id: string) {
+  confirmar(id: string, order: Order) {
+    console.log(order);
+debugger
     this.cart.forEach(item =>{
       const orderItem: OrderItem = {
-        order: this.order,
+        orderId: order,
         product: item.product
       }
       this.orderItem.push(orderItem);
@@ -186,7 +188,7 @@ export class CheckOutComponent implements OnInit {
       });
   }
 
-  async createToken() {
+  async createToken(order?: Order) {
     const name = this.stripeTest.get('name').value;
     const result = await this.stripeService.createToken(this.card.element, { name }).toPromise();
     if (result.token) {
@@ -199,7 +201,7 @@ export class CheckOutComponent implements OnInit {
 
       this.paymentService.pagar(payment)
         .then((res: any) => {
-          this.confirmar(res.id);
+          this.confirmar(res.id, order);
         });
       setTimeout(() => {
         this.router.navigate(['pedidos']);

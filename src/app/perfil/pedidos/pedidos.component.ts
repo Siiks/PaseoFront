@@ -30,13 +30,12 @@ export class PedidosComponent {
     const email = JSON.parse(emailString);
     this.user = await this.userService.getUserByEmail(email);
     const allOrderItems = await this.pedidosService.getOrderItems(this.user.id);
+    console.log(allOrderItems);
 
     // Agrupar los pedidos por el order.id y los productos
     const groupedPedidos = this.groupPedidos(allOrderItems);
 
-    this.productos = Array.from(groupedPedidos.values()).filter(order => {
-      return order.product.length > 0 && order.product.every(product => typeof product === 'object');
-    });
+    this.productos = Array.from(groupedPedidos.values())
     console.log(this.productos);
 
   }
@@ -45,15 +44,15 @@ export class PedidosComponent {
     const groupedMap = new Map<string, orderProducts>();
 
     for (const orderItem of orderItems) {
-      if (orderItem && orderItem.order && orderItem.order.id !== undefined) {
-        const key = orderItem.order.id.toString();
+      if (orderItem && orderItem.orderId && orderItem.orderId.id !== undefined) {
+        const key = orderItem.orderId.id.toString();
 
         if (groupedMap.has(key)) {
           const existingOrder = groupedMap.get(key);
           existingOrder.product.push(orderItem.product);
         } else {
           const newOrder: orderProducts = {
-            order: orderItem.order,
+            order: orderItem.orderId,
             product: [orderItem.product]
           };
           groupedMap.set(key, newOrder);

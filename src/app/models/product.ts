@@ -1,6 +1,6 @@
 import { Category } from "./category";
 
-export class Product {
+export interface Product {
   id: number;
   category: Category;
   name: string;
@@ -8,9 +8,10 @@ export class Product {
   price: number;
   inventoryQuantity: number;
   fotos: any[];
+
 }
 
-export class ProductDto {
+export interface ProductDto {
   id: number;
   idCategory: number;
   name: string;

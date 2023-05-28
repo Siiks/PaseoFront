@@ -15,7 +15,7 @@ export interface Order {
 export interface OrderItem {
   quantity?: any;
   id?: number;
-  order: Order;
+  orderId: Order;
   product: Product;
 }
 
